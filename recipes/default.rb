@@ -27,6 +27,9 @@
 require 'chef/util/file_edit'
 
 fqdn = node[:set_fqdn] || generate_fqdn
+
+Chef::Log.info "Setting fqdn to: #{fqdn}"
+
 if fqdn
   fqdn =~ /^([^.]+)/
   hostname = $1
