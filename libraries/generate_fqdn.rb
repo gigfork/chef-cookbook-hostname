@@ -15,7 +15,18 @@ class Chef::Recipe
     env_code = node["environment_code"] || "default"
     zone_code = node["zone_code"] || "undef"
     domain = node["base_domain"] || node[:domain]
+    internal = node["internal_dns_code"] || "int"
     fqdn = "#{host}.#{env_code}.#{zone_code}.#{domain}"
+    return fqdn
+  end
+
+  def generate_internal_fqdn
+    host      = node["host"]              || node[:hostname]
+    env_code  = node["environment_code"]  || "default"
+    zone_code = node["zone_code"]         || "undef"
+    domain    = node["base_domain"]       || node[:domain]
+    internal  = node["internal_dns_code"] || "int"
+    fqdn      = "#{host}.#{internal}.#{env_code}.#{zone_code}.#{domain}"
     return fqdn
   end
 end
