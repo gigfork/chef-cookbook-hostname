@@ -29,7 +29,9 @@ require 'chef/util/file_edit'
 fqdn = node[:set_fqdn] || generate_fqdn
 int_fqdn = node[:set_int_fqdn] || generate_internal_fqdn
 node.set["int_fqdn"] = int_fqdn
+node.save
 
+Chef::Log.info "Setting internal fqdn to: #{node["int_fqdn"]}"
 Chef::Log.info "Setting fqdn to: #{fqdn}"
 
 if fqdn

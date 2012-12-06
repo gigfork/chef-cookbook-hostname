@@ -8,10 +8,10 @@ class Chef::Recipe
       floating = nil
     end
     if floating then
-      Chef::Log.info "Creating A record for #{node[:fqdn]} to #{ip}"
+      Chef::Log.info "Creating A record for #{node[:fqdn]} to #{floating}"
       dynect_rr node.name do
         record_type "A"
-        rdata({"address" => ip})
+        rdata({"address" => floating})
         fqdn node[:fqdn]
         customer node[:dynect][:customer]
         username node[:dynect][:username]
@@ -22,11 +22,11 @@ class Chef::Recipe
     end
     
     if not node[:int_fqdn].nil? then
-      Chef::Log.info "Creating A record for #{node[:fqdn]} to #{ip}"
+      Chef::Log.info "Creating A record for #{node[:fqdn]} to #{node[:ipaddress]}"
       dynect_rr node.name do
         record_type "A"
         rdata({"address" => node[:ipaddress]})
-        fqdn node[:fqdn]
+        fqdn node[:int_fqdn]
         customer node[:dynect][:customer]
         username node[:dynect][:username]
         password node[:dynect][:password]
