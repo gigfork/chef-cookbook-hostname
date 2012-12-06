@@ -3,4 +3,4 @@
 include_recipe "dynect::default"
 include_recipe "dynect"
 
-register_domain
+register_host_with_dynect
