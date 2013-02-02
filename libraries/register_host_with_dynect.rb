@@ -2,7 +2,7 @@ class Chef::Recipe
   def register_host_with_dynect
     # register floating ip with dynect if it exists
     begin
-      floating = node["openstack"]["latest"]["meta-data"]["public-ipv4"]
+      floating = node["openstack"]["public_ipv4"]
     rescue NoMethodError
       Chef::Log.info "Could not find floating ip for node!"
       floating = nil
